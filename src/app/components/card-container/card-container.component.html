@@ -1,0 +1,4 @@
+<div class="card-container" *ngFor="let player of players$ | async;">
+  <app-result [result]="player.score"></app-result>
+  <app-card [card]="player.card" [winner]="player.winner"></app-card>
+</div>

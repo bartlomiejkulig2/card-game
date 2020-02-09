@@ -1,15 +1,37 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+
+import { StoreModule } from '@ngrx/store';
+
+import { MatButtonToggleModule, MatCardModule, MatChipsModule } from '@angular/material';
+
 import { AppComponent } from './app.component';
+import { ResourcePickerComponent } from './components/resource-picker/resource-picker.component';
+import { CardContainerComponent } from './components/card-container/card-container.component';
+import { ActionButtonComponent } from './components/action-button/action-button.component';
+import { ResultComponent } from './components/result/result.component';
+import { CardComponent } from './components/card/card.component';
+import { appReducers } from './store/reducers/app.reducers';
+
+
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        MatButtonToggleModule,
+        MatChipsModule,
+        MatCardModule,
+        StoreModule.forRoot(appReducers)
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        ResourcePickerComponent,
+        CardContainerComponent,
+        ActionButtonComponent,
+        ResultComponent,
+        CardComponent
       ],
     }).compileComponents();
   }));
@@ -18,18 +40,5 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'card-game'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('card-game');
-  });
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('card-game app is running!');
   });
 });
